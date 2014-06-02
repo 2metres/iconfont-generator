@@ -1,0 +1,59 @@
+@font-face {
+	font-family: "handdrawn-icons";
+	src: url('../../assets/fonts/handdrawn-iconshanddrawn-icons.eot');
+	src: url('../../assets/fonts/handdrawn-iconshanddrawn-icons.eot?#iefix') format('eot'),
+		url('../../assets/fonts/handdrawn-iconshanddrawn-icons.woff') format('woff'),
+		url('../../assets/fonts/handdrawn-iconshanddrawn-icons.ttf') format('truetype'),
+		url('../../assets/fonts/handdrawn-iconshanddrawn-icons.svg#handdrawn-icons') format('svg');
+}
+
+%icon {
+	font-family: "handdrawn-icons";
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	// speak: none; // only necessary if not using the private unicode range (firstGlyph option)
+	text-decoration: none;
+	text-transform: none;
+}
+
+@function icon-char($filename) {
+	$char: "";
+
+	@if $filename == handdrawn-icons {
+		$char: "\E001";
+	}
+	@if $filename == handdrawn-icons.ttf {
+		$char: "\E002";
+	}
+	@if $filename == handdrawn-icons.woff {
+		$char: "\E003";
+	}
+	@if $filename == handdrawn-icons.eot {
+		$char: "\E004";
+	}
+
+	@return $char;
+}
+
+@mixin icon($filename, $insert: before) {
+	&:#{$insert} {
+		@extend %icon;
+		content: icon-char($filename);
+	}
+}
+
+.icon-handdrawn-icons {
+	@include icon(handdrawn-icons);
+}
+.icon-handdrawn-icons.ttf {
+	@include icon(handdrawn-icons.ttf);
+}
+.icon-handdrawn-icons.woff {
+	@include icon(handdrawn-icons.woff);
+}
+.icon-handdrawn-icons.eot {
+	@include icon(handdrawn-icons.eot);
+}
