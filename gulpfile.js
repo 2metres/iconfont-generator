@@ -2,26 +2,20 @@ var gulp = require('gulp');
 var iconfont = require('gulp-iconfont');
 var iconfontCss = require('gulp-iconfont-css');
 
-gulp.task('fontify', function(){
+var fontName = "handdrawn-icons";
+var outputType = "scss";
+var templatesPath = "./node_modules/gulp-iconfont-css/templates/_icons."
 
-  var fontName = "handdrawn-icons";
-
-  gulp.src(["./assets/icons/" + fontName + "/*.svg"])
-    .pipe(
-      iconfont({
+gulp.task('iconfont', function(){
+  gulp.src(['app/assets/icons/*.svg'])
+    .pipe(iconfontCss({
       fontName: fontName,
-      appendCodepoints: true
+      path: templatesPath + outputType,
+      targetPath: '../css/_' + fontName + '.' + outputType,
+      fontPath: '../fonts/'
     }))
-    .on('codepoints', function(codepoints, options) {
-      console.log(codepoints, options);
-    })
-    .pipe(gulp.dest("./assets/fonts/" + fontName))
-    .pipe(
-      iconfontCss({
-        fontName: fontName,
-        path: './lib/template.css',
-        targetPath: "../../assets/css/_" + fontName + ".css",
-        fontPath: "../../assets/fonts/" + fontName
-      })
-    );
+    .pipe(iconfont({
+      fontName: fontName
+     }))
+    .pipe(gulp.dest('./app/assets/fonts/'));
 });
