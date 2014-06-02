@@ -1,6 +1,4 @@
 iconfont-generator
 ==================
-<code>
-  npm install</br>
-  gulp iconfont
-</code>
+<code>npm install</code>
+<code>gulp iconfont</code>
