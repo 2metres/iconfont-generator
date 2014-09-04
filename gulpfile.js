@@ -2,7 +2,7 @@ var gulp = require('gulp');
 var iconfont = require('gulp-iconfont');
 var iconfontCss = require('gulp-iconfont-css');
 
-var fontName = "handdrawn-icons";
+var fontName = "bw-icons";
 var outputType = "scss";
 var templatesPath = "./node_modules/gulp-iconfont-css/templates/_icons."
 
@@ -15,7 +15,8 @@ gulp.task('iconfont', function(){
       fontPath: '../fonts/'
     }))
     .pipe(iconfont({
-      fontName: fontName
+      fontName: fontName,
+      normalize: true
      }))
     .pipe(gulp.dest('./app/assets/fonts/'));
 });
